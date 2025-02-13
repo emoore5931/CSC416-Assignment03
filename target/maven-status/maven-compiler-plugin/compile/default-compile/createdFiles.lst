@@ -1,0 +1,7 @@
+image\conversion\converters\PointProcessing.class
+image\conversion\converters\GeometricTransformer.class
+image\conversion\converters\ImageSubtractor.class
+image\conversion\util\ImageExporter.class
+image\conversion\converters\ImageTransformer.class
+image\conversion\util\Config.class
+image\conversion\Main.class

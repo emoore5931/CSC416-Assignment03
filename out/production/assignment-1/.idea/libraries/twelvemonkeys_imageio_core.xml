@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="twelvemonkeys.imageio.core" type="repository">
+    <properties maven-id="com.twelvemonkeys.imageio:imageio-core:3.10.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/imageio-core-3.10.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/common-lang-3.10.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/common-io-3.10.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/common-image-3.10.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
