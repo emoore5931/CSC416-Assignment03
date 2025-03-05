@@ -1,13 +1,12 @@
-package image.histogram.transformation.util;
+package image.spatial.filtering.util;
 
-import image.histogram.transformation.transformers.HistogramEqualizer;
+import image.spatial.filtering.transformers.HistogramEqualizer;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +17,9 @@ public class ImageConversion {
     }
 
     public enum ConversionOptions {
-        HistogramEqualization,
-        HistogramSpecification
+        GaussianFilter,
+        LaplacianFilter,
+        MedianFilter
     }
 
     private ImageTypes outputType;

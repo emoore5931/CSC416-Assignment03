@@ -1,7 +1,6 @@
-package image.histogram.transformation.transformers;
+package image.spatial.filtering.transformers;
 
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
 
 public interface HistogramTransformer extends ImageTransformer {
     static int[] getImageHistogram(BufferedImage img) {

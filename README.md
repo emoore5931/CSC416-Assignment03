@@ -7,7 +7,7 @@ Compiler: Maven
 
 ## Histogram Equalization ##
 Source code for the equalization process is located in
-image.histogram.transformation.transformers.HistogramEqualizer
+transformers.image.spatial.filtering.HistogramEqualizer
 
 (Note: TIFF image files could not be displayed so links to the images are given)
 

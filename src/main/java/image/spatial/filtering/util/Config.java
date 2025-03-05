@@ -1,4 +1,4 @@
-package image.histogram.transformation.util;
+package image.spatial.filtering.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

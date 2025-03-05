@@ -1,4 +1,4 @@
-package image.histogram.transformation.transformers;
+package image.spatial.filtering.transformers;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

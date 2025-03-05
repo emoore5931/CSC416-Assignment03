@@ -1,7 +1,7 @@
-package image.histogram.transformation;
+package image.spatial.filtering;
 
-import image.histogram.transformation.util.ImageConversion;
-import image.histogram.transformation.util.ImageExporter;
+import image.spatial.filtering.util.ImageConversion;
+import image.spatial.filtering.util.ImageExporter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,15 +9,14 @@ import java.util.Scanner;
 
 public class Main {
     private static String[] getInputImages() {
-        //temp testing solution
         ArrayList<String> inputImages = new ArrayList<>();
         boolean terminateInput = false;
         Scanner in = new Scanner(System.in);
 
         while (!terminateInput) {
-            System.out.print("Please insert a file path (0 to continue): ");
+            System.out.print("Please insert a file path (Press Enter to continue): ");
             String readInput = in.next();
-            if (readInput.charAt(0) == '0')
+            if (readInput.isBlank())
                 if (!inputImages.isEmpty())
                     terminateInput = true;
                 else
