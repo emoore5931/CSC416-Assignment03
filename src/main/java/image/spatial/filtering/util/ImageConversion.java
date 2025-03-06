@@ -1,5 +1,7 @@
 package image.spatial.filtering.util;
 
+import image.spatial.filtering.filters.FilterOutput;
+import image.spatial.filtering.filters.GaussianFilter;
 import image.spatial.filtering.transformers.HistogramEqualizer;
 
 import javax.imageio.ImageIO;
@@ -60,11 +62,16 @@ public class ImageConversion {
                 sourceImages.add(sourceImage);
         }
 
-        List<Image> transformedImages = null;
+        List<Image> filteredImages = new ArrayList<>();
         switch (convType) {
-            case HistogramEqualization -> transformedImages = HistogramEqualizer.transformImages(sourceImages);
+            case GaussianFilter -> sourceImages.forEach(img -> {
+                int sigma = Integer.parseInt(Config.getProperty("sigma"));
+                double K = Double.parseDouble(Config.getProperty("K"));
+                FilterOutput result = new GaussianFilter(img, sigma, K).filterImage();
+                filteredImages.add(result.grayscaleOutput);
+            });
         }
-        return transformedImages;
+        return filteredImages;
     }
 
     private static BufferedImage getImage(String imgPath) {

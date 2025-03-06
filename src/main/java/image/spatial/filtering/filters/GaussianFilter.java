@@ -28,7 +28,6 @@ public class GaussianFilter extends ImageFilter {
 
     @Override
     protected int filterPixel(int[][] inputMatrix, int x, int y) {
-        double[][] temp = new double[this.kernelSize][this.kernelSize];
         double filterTotal = 0.0;
         double kernelTotal = 0.0;
         int kernelCenter = this.kernelSize / 2;
@@ -37,9 +36,10 @@ public class GaussianFilter extends ImageFilter {
                 int matrixX = (s - kernelCenter) + x;
                 int matrixY = (t - kernelCenter) + y;
 
-                if (coordinatesInMatrix(inputMatrix, matrixX, matrixY))
-                    filterTotal += this.kernel[s][t] * inputMatrix[matrixX][matrixY];
-                kernelTotal += this.kernel[s][t];
+                if (coordinatesInMatrix(inputMatrix, matrixX, matrixY)) {
+                    filterTotal += (this.kernel[s][t] * inputMatrix[matrixX][matrixY]);
+                    kernelTotal += (this.kernel[s][t]);
+                }
             }
         }
 
@@ -55,7 +55,7 @@ public class GaussianFilter extends ImageFilter {
                 int kernelX = s - kernelCenter;
                 int kernelY = t - kernelCenter;
 
-                this.kernel[s][t] = Math.exp((double) -(kernelX * kernelX + kernelY * kernelY) / (2 * this.sigma * this.sigma)) * k;
+                this.kernel[s][t] = Math.exp((double) (kernelX * kernelX + kernelY * kernelY) / (2 * (this.sigma * this.sigma)) * (-1) * k);
             }
         }
 

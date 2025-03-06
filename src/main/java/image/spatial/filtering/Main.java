@@ -15,8 +15,8 @@ public class Main {
 
         while (!terminateInput) {
             System.out.print("Please insert a file path (Press Enter to continue): ");
-            String readInput = in.next();
-            if (readInput.isBlank())
+            String readInput = in.nextLine();
+            if (readInput.isEmpty() || readInput.isBlank())
                 if (!inputImages.isEmpty())
                     terminateInput = true;
                 else
@@ -49,8 +49,7 @@ public class Main {
         String conversionProcedure = "_";
 
         switch (imageConversionType) {
-            case HistogramEqualization -> conversionProcedure += "histequal";
-            case HistogramSpecification -> conversionProcedure += "histspec";
+            case GaussianFilter -> conversionProcedure += "gaussian";
         }
 
         return fileName + conversionProcedure;
