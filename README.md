@@ -1,18 +1,50 @@
-# CSC 416 Assignment 02 #
+# CSC 416 Assignment 03 #
 
 ## Environment ##
 Language: Java 16+
 
 Compiler: Maven
 
-## Histogram Equalization ##
-Source code for the equalization process is located in
-transformers.image.spatial.filtering.HistogramEqualizer
 
-(Note: TIFF image files could not be displayed so links to the images are given)
+## Notes ##
+- Tiff images not supported in markup so links to images are given instead.
+- Parts of the program can be configured in [config.properties](config.properties)
 
-Input image: [lena](images/lena.tif)
+## Gaussian Filter ##
+Main logic for the Gaussian filtering process is located in the package
+image.spatial.filtering.filters.GaussianFilter
 
-Console input: ![lena!](images/report/console_input.png)
 
-Output image: [lena_histequal](images/lena_histequal.tiff)
+Input image: [lenna-noise](images/lenna-noise.tif)
+
+Console input: 
+
+![lena!](images/report/gaussian_input.png)
+
+Output image: [lenna-noise_gaussian](images/lenna-noise_gaussian.tiff)
+
+## Laplacian Filter ##
+Main logic for the Laplacian sharpening process is located in the package
+image.spatial.filtering.filters.LaplacianFilter
+
+
+Input image: [lenna-noise](images/lenna-noise.tif)
+
+Console input:
+
+![lena!](images/report/laplacian_input.png)
+
+Output image: [lenna-noise_sharpen](images/lenna-noise_sharpen.tiff)
+
+## Median Filter ##
+Main logic for the Median filtering process is located in the package
+image.spatial.filtering.filters.MedianFilter
+
+
+Input image: [lenna-noise](images/lenna-noise.tif)
+
+Console input:
+
+![lena!](images/report/median_input.png)
+
+Output image: [lenna-noise_median](images/lenna-noise_median.tiff)

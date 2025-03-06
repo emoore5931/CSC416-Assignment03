@@ -2,7 +2,8 @@ package image.spatial.filtering.util;
 
 import image.spatial.filtering.filters.FilterOutput;
 import image.spatial.filtering.filters.GaussianFilter;
-import image.spatial.filtering.transformers.HistogramEqualizer;
+import image.spatial.filtering.filters.LaplacianFilter;
+import image.spatial.filtering.filters.MedianFilter;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -68,6 +69,21 @@ public class ImageConversion {
                 int sigma = Integer.parseInt(Config.getProperty("sigma"));
                 double K = Double.parseDouble(Config.getProperty("K"));
                 FilterOutput result = new GaussianFilter(img, sigma, K).filterImage();
+                filteredImages.add(result.grayscaleOutput);
+            });
+            case MedianFilter -> sourceImages.forEach(img -> {
+                int kernelSize = Integer.parseInt(Config.getProperty("medianFilterKernelSize"));
+                FilterOutput result = new MedianFilter(img, kernelSize).filterImage();
+                filteredImages.add(result.grayscaleOutput);
+            });
+            case LaplacianFilter -> sourceImages.forEach(img -> {
+                double weight = Double.parseDouble(Config.getProperty("laplacianWeight"));
+                double[][] kernel = {
+                        {0, 1, 0},
+                        {1, -4, 1},
+                        {0, 1, 0}
+                };
+                FilterOutput result = new LaplacianFilter(img, kernel, weight).filterImage();
                 filteredImages.add(result.grayscaleOutput);
             });
         }

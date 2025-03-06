@@ -2,6 +2,7 @@ package image.spatial.filtering.filters;
 
 import image.spatial.filtering.util.Config;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
@@ -28,8 +29,8 @@ public class GaussianFilter extends ImageFilter {
 
     @Override
     protected int filterPixel(int[][] inputMatrix, int x, int y) {
-        double filterTotal = 0.0;
-        double kernelTotal = 0.0;
+        double[] rgbFilterTotal = new double[3];
+        double kernelTotal = this.getKernelTotal();
         int kernelCenter = this.kernelSize / 2;
         for (int s = 0; s < this.kernelSize; s++) {
             for (int t = 0; t < this.kernelSize; t++) {
@@ -37,13 +38,19 @@ public class GaussianFilter extends ImageFilter {
                 int matrixY = (t - kernelCenter) + y;
 
                 if (coordinatesInMatrix(inputMatrix, matrixX, matrixY)) {
-                    filterTotal += (this.kernel[s][t] * inputMatrix[matrixX][matrixY]);
-                    kernelTotal += (this.kernel[s][t]);
+                    Color pixelColor = new Color(inputMatrix[matrixX][matrixY]);
+                    rgbFilterTotal[0] += (this.kernel[s][t] * pixelColor.getRed());
+                    rgbFilterTotal[1] += (this.kernel[s][t] * pixelColor.getGreen());
+                    rgbFilterTotal[2] += (this.kernel[s][t] * pixelColor.getBlue());
                 }
             }
         }
 
-        return (int) (filterTotal / kernelTotal);
+        int filteredRed = (int) (rgbFilterTotal[0] / kernelTotal);
+        int filteredGreen = (int) (rgbFilterTotal[1] / kernelTotal);
+        int filteredBlue = (int) (rgbFilterTotal[2] / kernelTotal);
+
+        return new Color(filteredRed, filteredGreen, filteredBlue).getRGB();
     }
 
     @Override
@@ -61,7 +68,9 @@ public class GaussianFilter extends ImageFilter {
 
         if (Boolean.parseBoolean(Config.getProperty("showKernels"))) {
             System.out.println("Generated Gaussian Kernel:");
-            System.out.println(Arrays.deepToString(this.kernel));
+            for (double[] row : this.kernel) {
+                System.out.println(Arrays.toString(row));
+            }
         }
     }
 }

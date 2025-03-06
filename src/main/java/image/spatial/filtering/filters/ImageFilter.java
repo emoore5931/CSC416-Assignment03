@@ -48,7 +48,6 @@ public abstract class ImageFilter {
         int height = inputMatrix.length;
         int width = inputMatrix[0].length;
         BufferedImage output = new BufferedImage(width, height, imageType);
-        generateKernel();
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -64,6 +63,16 @@ public abstract class ImageFilter {
     protected void generateKernel() {throw new UnsupportedOperationException("Method not yet implemented for the chosen filter: " + this.getClass().getName());}
 
     protected boolean coordinatesInMatrix(int[][] matrix, int x, int y) {
-        return x > 0 && x < matrix.length && y < matrix.length && y > 0;
+        return x >= 0 && x < matrix.length && y < matrix.length && y >= 0;
+    }
+
+    public double getKernelTotal() {
+        double total = 0.0;
+        for (int x = 0; x < this.kernelSize; x++) {
+            for (int y = 0; y < this.kernelSize; y++) {
+                total += this.kernel[x][y];
+            }
+        }
+        return total;
     }
 }

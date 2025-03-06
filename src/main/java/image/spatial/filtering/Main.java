@@ -50,6 +50,8 @@ public class Main {
 
         switch (imageConversionType) {
             case GaussianFilter -> conversionProcedure += "gaussian";
+            case MedianFilter -> conversionProcedure += "median";
+            case LaplacianFilter -> conversionProcedure += "sharpen";
         }
 
         return fileName + conversionProcedure;
